@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
-import { searchShows } from '../utils';
+import { searchActors, searchShows } from '../utils';
+import SearchForm from '../components/SearchForm';
 
 const Home = () => {
     const [apiData, setApiData] = useState(null);
     const [apiError, setApiError] = useState(null);
 
-    const searchHandler = async e => {
-        e.preventDefault();
-        const searchQuery = e.target[0].value;
+    const searchHandler = async ({ query, option }) => {
         setApiError(null);
 
         try {
-            const searchData = await searchShows(searchQuery);
+            let searchData = '';
+            if (option === 'shows') searchData = await searchShows(query);
+            else searchData = await searchActors(query);
             setApiData(searchData);
         } catch (err) {
             setApiError(err.message);
@@ -22,19 +23,18 @@ const Home = () => {
     const renderApiData = () => {
         if (apiError) return <h1>{apiError}</h1>;
 
-        if (!apiData) return null;
+        if (!apiData || (apiData.length && apiData.length > 0)) return null;
 
-        return apiData.map(data => (
-            <div key={data.show.id}>{data.show.name}</div>
-        ));
+        if (apiData[0].shows)
+            return apiData.map(data => (
+                <div key={data.show.id}>{data.show.name}</div>
+            ));
+        else console.log(apiData);
     };
 
     return (
         <>
-            <form onSubmit={searchHandler}>
-                <input />
-                <button type="submit">Search</button>
-            </form>
+            <SearchForm searchHandler={searchHandler} />
             <div>{renderApiData()}</div>
         </>
     );

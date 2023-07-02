@@ -8,3 +8,5 @@ const apiGet = async endpoint => {
 };
 
 export const searchShows = query => apiGet(`/search/shows?q=${query}`);
+
+export const searchActors = query => apiGet(`/search/people?q=${query}`);
