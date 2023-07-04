@@ -10,3 +10,9 @@ const apiGet = async endpoint => {
 export const searchShows = query => apiGet(`/search/shows?q=${query}`);
 
 export const searchActors = query => apiGet(`/search/people?q=${query}`);
+
+export const htmlParser = str =>
+    str.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '');
+
+export const getImageSource = image =>
+    image?.medium ? image.medium : '/image-not-found.png';

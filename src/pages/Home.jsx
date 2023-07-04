@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { searchActors, searchShows } from '../utils';
 import SearchForm from '../components/SearchForm';
+import ShowsGrid from '../components/shows/ShowsGrid';
+import ActorsGrid from '../components/actors/ActorsGrid';
 
 const Home = () => {
     const [apiData, setApiData] = useState(null);
@@ -23,13 +25,14 @@ const Home = () => {
     const renderApiData = () => {
         if (apiError) return <h1>{apiError}</h1>;
 
-        if (!apiData || (apiData.length && apiData.length > 0)) return null;
+        if (!apiData || !Array.isArray(apiData)) return null;
 
-        if (apiData[0].shows)
-            return apiData.map(data => (
-                <div key={data.show.id}>{data.show.name}</div>
-            ));
-        else console.log(apiData);
+        if (apiData.length == 0) return <div>No results found</div>;
+
+        console.log(apiData);
+
+        if (apiData[0].show) return <ShowsGrid shows={apiData} />;
+        else return <ActorsGrid actors={apiData} />;
     };
 
     return (
