@@ -4,26 +4,24 @@ import { searchActors, searchShows } from '../utils';
 import SearchForm from '../components/SearchForm';
 import ShowsGrid from '../components/shows/ShowsGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-    const [apiData, setApiData] = useState(null);
-    const [apiError, setApiError] = useState(null);
+    const [request, setRequest] = useState(null);
 
-    const searchHandler = async ({ query, option }) => {
-        setApiError(null);
+    const searchHandler = inputReq => setRequest(inputReq);
 
-        try {
-            let searchData = '';
-            if (option === 'shows') searchData = await searchShows(query);
-            else searchData = await searchActors(query);
-            setApiData(searchData);
-        } catch (err) {
-            setApiError(err.message);
-        }
-    };
+    const { data: apiData, error: apiError } = useQuery({
+        queryKey: ['search', request],
+        queryFn: () =>
+            request.option === 'shows'
+                ? searchShows(request.query)
+                : searchActors(request.query),
+        enabled: !!request,
+    });
 
     const renderApiData = () => {
-        if (apiError) return <h1>{apiError}</h1>;
+        if (apiError) return <h1>{apiError.message}</h1>;
 
         if (!apiData || !Array.isArray(apiData)) return null;
 

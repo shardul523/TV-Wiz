@@ -11,6 +11,8 @@ export const searchShows = query => apiGet(`/search/shows?q=${query}`);
 
 export const searchActors = query => apiGet(`/search/people?q=${query}`);
 
+export const getShowById = showId => apiGet(`/shows/${showId}`);
+
 export const htmlParser = str =>
     str.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '');
 
