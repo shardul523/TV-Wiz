@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { getShowById } from '../utils';
+import ShowDetails from '../components/shows/ShowDetails';
 
 const Show = () => {
     const { showId } = useParams();
@@ -14,9 +15,11 @@ const Show = () => {
 
     if (status === 'error') return <div>Error: {error.message}</div>;
 
+    console.log(data);
+
     return (
         <div>
-            Show with show id {showId} and name {data.name}
+            <ShowDetails showData={data} />
         </div>
     );
 };

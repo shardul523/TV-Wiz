@@ -6,7 +6,7 @@ const ActorCard = ({ actor }) => {
     return (
         <div>
             <div>
-                <img src={getImageSource(image)} />
+                <img src={getImageSource(image?.medium)} />
             </div>
             <h2>
                 {name} {!!gender && `(${gender})`}

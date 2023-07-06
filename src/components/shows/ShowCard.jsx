@@ -3,7 +3,7 @@ import { getImageSource, htmlParser } from '../../utils';
 
 const ShowCard = ({ show }) => {
     const { name, image, summary, id } = show;
-    const shownImage = getImageSource(image);
+    const shownImage = getImageSource(image?.medium);
     const croppedSummary = summary ? htmlParser(summary) : 'No summary';
 
     return (
