@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 const usePersistedReducer = (reducerFn, initialState, localStorageKey) => {
     const [state, dispatcher] = useReducer(reducerFn, initialState, initial => {
@@ -11,6 +11,20 @@ const usePersistedReducer = (reducerFn, initialState, localStorageKey) => {
     }, [state, localStorageKey]);
 
     return [state, dispatcher];
+};
+
+const usePersistedState = sessionStorageKey => {
+    const [state, setState] = useState(() => {
+        const persistentState = sessionStorage.getItem(sessionStorageKey);
+        return persistentState ? persistentState : '';
+    });
+
+    useEffect(
+        () => sessionStorage.setItem(sessionStorageKey, state),
+        [state, sessionStorageKey]
+    );
+
+    return [state, setState];
 };
 
 const starrer = (currStarredShows, { type, showId }) => {
@@ -26,3 +40,5 @@ const starrer = (currStarredShows, { type, showId }) => {
 
 export const useStarredShows = () =>
     usePersistedReducer(starrer, [], 'Starred Shows');
+
+export const useSearchQuery = () => usePersistedState('Search Query');
