@@ -1,23 +1,13 @@
-import { getImageSource } from '../../utils';
+import ShowCast from './ShowCast';
+import ShowInfo from './ShowInfo';
+import ShowSeasons from './ShowSeasons';
 
-const ShowDetails = ({ showData }) => {
-    const { name, rating, image, summary, genres } = showData;
-
-    return (
-        <div>
-            <img src={getImageSource(image?.original)} />
-            <div>
-                <h1>{name}</h1>
-                <div>{rating?.average || 'N/A'}</div>
-                <div dangerouslySetInnerHTML={{ __html: summary }} />
-                <div>
-                    Genres:{' '}
-                    {Array.isArray(genres) &&
-                        genres.map(g => <span key={g}>{g}</span>)}
-                </div>
-            </div>
-        </div>
-    );
-};
+const ShowDetails = ({ showData }) => (
+    <div>
+        <ShowInfo showData={showData} />
+        <ShowSeasons seasons={showData?._embedded?.seasons} />
+        <ShowCast cast={showData?._embedded?.cast} />
+    </div>
+);
 
 export default ShowDetails;
