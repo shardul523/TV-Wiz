@@ -19,6 +19,7 @@ const Show = () => {
 
     return (
         <div>
+            <button type='button' onClick={() => window.close()}>Go back to Home</button>
             <ShowDetails showData={data} />
         </div>
     );
