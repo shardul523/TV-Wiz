@@ -9,7 +9,7 @@ const ShowsGrid = ({ shows }) => {
 
     return (
         <div>
-            {shows.map((ob, i) => (
+            {shows?.map((ob, i) => (
                 <ShowCard
                     key={i}
                     show={ob.show}

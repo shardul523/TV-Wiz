@@ -11,7 +11,13 @@ export const searchShows = query => apiGet(`/search/shows?q=${query}`);
 
 export const searchActors = query => apiGet(`/search/people?q=${query}`);
 
-export const getShowById = showId => apiGet(`/shows/${showId}?embed[]=seasons&embed[]=cast`);
+export const getShowById = showId =>
+    apiGet(`/shows/${showId}?embed[]=seasons&embed[]=cast`);
+
+export const getShowsByIds = showIds => {
+    const promises = showIds?.map(id => apiGet(`/shows/${id}`));
+    return Promise.all(promises);
+};
 
 export const htmlParser = str =>
     str.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '');

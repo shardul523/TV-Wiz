@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
+import { useSearchQuery } from '../hooks';
+
 const SearchForm = ({ searchHandler }) => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useSearchQuery();
     const [searchOption, setSearchOption] = useState('shows');
 
     const onSubmitHandler = event => {
@@ -16,7 +18,10 @@ const SearchForm = ({ searchHandler }) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
-            <input onChange={e => setSearchQuery(e.target.value)} />
+            <input
+                onChange={e => setSearchQuery(e.target.value)}
+                value={searchQuery}
+            />
             <label>
                 <input
                     type="radio"
