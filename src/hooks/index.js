@@ -1,10 +1,6 @@
 import { useEffect, useReducer } from 'react';
 
-export const usePersistedReducer = (
-    reducerFn,
-    initialState,
-    localStorageKey
-) => {
+const usePersistedReducer = (reducerFn, initialState, localStorageKey) => {
     const [state, dispatcher] = useReducer(reducerFn, initialState, initial => {
         const persistentState = localStorage.getItem(localStorageKey);
         return persistentState ? JSON.parse(persistentState) : initial;
@@ -16,3 +12,17 @@ export const usePersistedReducer = (
 
     return [state, dispatcher];
 };
+
+const starrer = (currStarredShows, { type, showId }) => {
+    switch (type) {
+        case 'STAR':
+            return currStarredShows?.concat(showId);
+        case 'UNSTAR':
+            return currStarredShows?.filter(currId => currId !== showId);
+        default:
+            return currStarredShows;
+    }
+};
+
+export const useStarredShows = () =>
+    usePersistedReducer(starrer, [], 'Starred Shows');
