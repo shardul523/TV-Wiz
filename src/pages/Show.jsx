@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { getShowById } from '../utils';
@@ -26,9 +26,9 @@ const Show = () => {
     return (
         <ShowPageWrapper>
             <BackHomeWrapper>
-                <button type="button" onClick={() => window.close()}>
+                <Link to='/'>
                     Go back to Home
-                </button>
+                </Link>
             </BackHomeWrapper>
             <ShowDetails showData={data} />
         </ShowPageWrapper>

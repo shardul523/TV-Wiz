@@ -1,3 +1,5 @@
+import ImageNotFoundSrc from '../lib/image-not-found.png'
+
 const BASE_URL = 'https://api.tvmaze.com';
 
 const apiGet = async endpoint => {
@@ -22,4 +24,4 @@ export const getShowsByIds = showIds => {
 export const htmlParser = str =>
     str.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '');
 
-export const getImageSource = image => (image ? image : '/image-not-found.png');
+export const getImageSource = image => (image ? image : ImageNotFoundSrc);
