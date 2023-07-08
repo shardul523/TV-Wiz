@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { NavList, StyledNavLink } from './styles/Navigation.styled';
 
 const Navigation = () => {

@@ -4,6 +4,8 @@ import { getShowsByIds } from '../utils';
 
 import StarredShowsGrid from '../components/shows/StarredShowsGrid';
 import { TextCenter } from '../components/styles/common/TextCenter';
+import Loader from '../components/styles/common/Loader';
+import FlexGrid from '../components/styles/common/FlexGrid';
 
 const Starred = () => {
     const [starredShows, starredShowsDispatch] = useStarredShows();
@@ -20,9 +22,13 @@ const Starred = () => {
             ),
     });
 
-    if (status === 'loading') return <div>Loading...</div>;
+    if (status === 'loading') return (
+        <FlexGrid>
+            <Loader />;
+        </FlexGrid>
+    );
 
-    if (status === 'error') return <div>{starredShowsError.message}</div>;
+    if (status === 'error') return <TextCenter>{starredShowsError.message}</TextCenter>;
 
     if (starredShowsData?.length)
         return (

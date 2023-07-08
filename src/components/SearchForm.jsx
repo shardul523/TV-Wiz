@@ -15,7 +15,6 @@ const SearchForm = ({ searchHandler }) => {
     const onSubmitHandler = event => {
         event.preventDefault();
         event.target[0].blur();
-        console.log(event);
         const request = {
             query: searchQuery,
             option: searchOption,
