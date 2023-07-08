@@ -3,6 +3,7 @@ import { useStarredShows } from '../hooks';
 import { getShowsByIds } from '../utils';
 
 import StarredShowsGrid from '../components/shows/StarredShowsGrid';
+import { TextCenter } from '../components/styles/common/TextCenter';
 
 const Starred = () => {
     const [starredShows, starredShowsDispatch] = useStarredShows();
@@ -31,7 +32,7 @@ const Starred = () => {
             />
         );
 
-    return <div>No shows have benn marked as Favorite.</div>;
+    return <TextCenter>No shows have benn marked as Favorite.</TextCenter>;
 };
 
 export default Starred;

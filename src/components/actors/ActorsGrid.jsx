@@ -1,12 +1,13 @@
 import ActorCard from './ActorCard';
+import FlexGrid from '../styles/common/FlexGrid';
 
 const ActorsGrid = ({ actors }) => {
     return (
-        <div>
+        <FlexGrid>
             {actors.map((obj, i) => (
                 <ActorCard key={i} actor={obj.person} />
             ))}
-        </div>
+        </FlexGrid>
     );
 };
 

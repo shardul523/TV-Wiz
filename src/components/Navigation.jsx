@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import { NavList, StyledNavLink } from './styles/Navigation.styled';
+
 const Navigation = () => {
     const LINKS = [
         { title: 'Home', link: '/' },
@@ -8,13 +10,15 @@ const Navigation = () => {
 
     return (
         <nav>
-            <ul>
+            <NavList>
                 {LINKS.map(item => (
                     <li key={item.link}>
-                        <Link to={item.link}>{item.title}</Link>
+                        <StyledNavLink to={item.link}>
+                            {item.title}
+                        </StyledNavLink>
                     </li>
                 ))}
-            </ul>
+            </NavList>
         </nav>
     );
 };

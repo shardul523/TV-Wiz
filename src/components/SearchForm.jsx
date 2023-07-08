@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
 import { useSearchQuery } from '../hooks';
+import { CustomRadioInput } from './RadioInput';
+import {
+    RadiosWrapper,
+    SearchButtonWrapper,
+    SearchInput,
+} from './styles/SearchForm.styled';
 
 const SearchForm = ({ searchHandler }) => {
     const [searchQuery, setSearchQuery] = useSearchQuery();
@@ -18,31 +24,31 @@ const SearchForm = ({ searchHandler }) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
-            <input
+            <SearchInput
                 onChange={e => setSearchQuery(e.target.value)}
                 value={searchQuery}
             />
-            <label>
-                <input
+            <RadiosWrapper>
+                <CustomRadioInput
+                    label={'Shows'}
                     type="radio"
                     name="search-option"
                     value="shows"
                     checked={searchOption === 'shows'}
                     onChange={() => setSearchOption('shows')}
-                />{' '}
-                Shows
-            </label>
-            <label>
-                <input
+                />
+                <CustomRadioInput
+                    label={'Actors'}
                     type="radio"
                     name="search-option"
                     value="actors"
                     checked={searchOption === 'actors'}
                     onChange={() => setSearchOption('actors')}
-                />{' '}
-                Actors
-            </label>
-            <button type="submit">Search</button>
+                />
+            </RadiosWrapper>
+            <SearchButtonWrapper>
+                <button type="submit">Search</button>
+            </SearchButtonWrapper>
         </form>
     );
 };

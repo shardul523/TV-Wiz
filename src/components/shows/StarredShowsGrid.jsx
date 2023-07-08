@@ -1,4 +1,5 @@
 import ShowCard from './ShowCard';
+import FlexGrid from '../styles/common/FlexGrid';
 
 const StarredShowsGrid = ({ shows, dispatch }) => {
     const isStarred = id => {
@@ -7,7 +8,7 @@ const StarredShowsGrid = ({ shows, dispatch }) => {
     };
 
     return (
-        <div>
+        <FlexGrid>
             {shows?.map((ob, i) => (
                 <ShowCard
                     key={i}
@@ -16,7 +17,7 @@ const StarredShowsGrid = ({ shows, dispatch }) => {
                     dispatch={dispatch}
                 />
             ))}
-        </div>
+        </FlexGrid>
     );
 };
 

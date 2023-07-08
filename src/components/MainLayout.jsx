@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
 import Navigation from './Navigation';
+import Title from './Title';
 
 export default function MainLayout() {
     return (
         <>
-            <h1>TV Wiz App</h1>
+            <Title />
             <Navigation />
             <Outlet />
         </>

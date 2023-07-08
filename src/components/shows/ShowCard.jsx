@@ -1,5 +1,8 @@
 //import { Link } from 'react-router-dom';
 import { getImageSource, htmlParser } from '../../utils';
+import { ActionSection, StarBtn } from '../styles/ShowCard.styled';
+import { SearchImgWrapper, SearchCard } from '../styles/common/SearchCard';
+import { StarIcon } from '../styles/common/StarIcon';
 
 const ShowCard = ({ show, isStarred, dispatch }) => {
     const { name, image, summary, id } = show;
@@ -14,19 +17,21 @@ const ShowCard = ({ show, isStarred, dispatch }) => {
     };
 
     return (
-        <div>
-            <h2>{name}</h2>
-            <div>
+        <SearchCard>
+            <SearchImgWrapper>
                 <img src={shownImage} />
-            </div>
-            <div>{croppedSummary}</div>
-            <button type="button" onClick={displayShow}>
-                Read More
-            </button>
-            <button onClick={dispatchCaller}>
-                {isStarred(id) ? 'Unfavorite' : 'Favorite'}
-            </button>
-        </div>
+            </SearchImgWrapper>
+            <h1>{name}</h1>
+            <p>{croppedSummary}</p>
+            <ActionSection>
+                <StarBtn type="button" onClick={displayShow}>
+                    Read More
+                </StarBtn>
+                <StarBtn onClick={dispatchCaller}>
+                    <StarIcon active={isStarred(id)} />
+                </StarBtn>
+            </ActionSection>
+        </SearchCard>
     );
 };
 
