@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useStarredShows } from '../hooks';
 import { getShowsByIds } from '../utils';
 
-import ShowsGrid from '../components/shows/ShowsGrid';
+import StarredShowsGrid from '../components/shows/StarredShowsGrid';
 
 const Starred = () => {
-    const [starredShows] = useStarredShows();
+    const [starredShows, starredShowsDispatch] = useStarredShows();
 
     const {
         data: starredShowsData,
@@ -23,7 +23,15 @@ const Starred = () => {
 
     if (status === 'error') return <div>{starredShowsError.message}</div>;
 
-    if (starredShowsData?.length) return <ShowsGrid shows={starredShowsData} />;
+    if (starredShowsData?.length)
+        return (
+            <StarredShowsGrid
+                shows={starredShowsData}
+                dispatch={starredShowsDispatch}
+            />
+        );
+
+    return <div>No shows have benn marked as Favorite.</div>;
 };
 
 export default Starred;
