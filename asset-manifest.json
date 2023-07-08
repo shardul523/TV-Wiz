@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/TV-Wiz/static/js/main.c3be7cd4.js",
+    "main.js": "/TV-Wiz/static/js/main.7d8668eb.js",
     "static/js/787.79b1e2dd.chunk.js": "/TV-Wiz/static/js/787.79b1e2dd.chunk.js",
     "service-worker.js": "/TV-Wiz/service-worker.js",
     "index.html": "/TV-Wiz/index.html",
-    "main.c3be7cd4.js.map": "/TV-Wiz/static/js/main.c3be7cd4.js.map",
+    "main.7d8668eb.js.map": "/TV-Wiz/static/js/main.7d8668eb.js.map",
     "787.79b1e2dd.chunk.js.map": "/TV-Wiz/static/js/787.79b1e2dd.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.c3be7cd4.js"
+    "static/js/main.7d8668eb.js"
   ]
 }
