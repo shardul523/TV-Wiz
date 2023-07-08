@@ -1,4 +1,5 @@
 //import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 import { getImageSource, htmlParser } from '../../utils';
 import { ActionSection, StarBtn } from '../styles/ShowCard.styled';
 import { SearchImgWrapper, SearchCard } from '../styles/common/SearchCard';
@@ -9,12 +10,25 @@ const ShowCard = ({ show, isStarred, dispatch }) => {
     const shownImage = getImageSource(image?.medium);
     const croppedSummary = summary ? htmlParser(summary) : 'No summary';
 
+    const starBtnRef = useRef();
+
     const displayShow = () => open(`/show/${id}`);
 
     const dispatchCaller = () => {
         const type = isStarred(id) ? 'UNSTAR' : 'STAR';
         dispatch({ type, showId: id });
     };
+
+    const handleStarClick = () => {
+        dispatchCaller();
+
+        if (!starBtnRef) return;
+
+        if (isStarred(id)) 
+            starBtnRef.current.classList.remove('animate');
+        else 
+            starBtnRef.current.classList.add('animate')
+    }
 
     return (
         <SearchCard>
@@ -27,7 +41,7 @@ const ShowCard = ({ show, isStarred, dispatch }) => {
                 <StarBtn type="button" onClick={displayShow}>
                     Read More
                 </StarBtn>
-                <StarBtn onClick={dispatchCaller}>
+                <StarBtn onClick={handleStarClick} ref={starBtnRef}>
                     <StarIcon active={isStarred(id)} />
                 </StarBtn>
             </ActionSection>

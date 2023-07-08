@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StarIcon } from './common/StarIcon';
 
 export const ActionSection = styled.div`
     margin-top: 15px;
@@ -26,5 +27,21 @@ export const StarBtn = styled.button`
     align-items: center;
     &:hover {
         cursor: pointer;
+    }
+    &.animate {
+        ${StarIcon} {
+            animation: increase 0.5s ease-in forwards;
+            @keyframes increase {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(3) rotate(45deg);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+        }
     }
 `;
